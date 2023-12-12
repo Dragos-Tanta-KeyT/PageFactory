@@ -4,7 +4,7 @@
 
     <test name="123" >
 
-		<parameter name="user" value="customer" />
+		<parameter name="user" value="customer123" />
 		<parameter name = "pass" value = "customer@123" />
 
         <classes>

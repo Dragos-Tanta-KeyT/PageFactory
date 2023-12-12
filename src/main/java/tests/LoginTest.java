@@ -1,5 +1,7 @@
 package tests;
 
+import static org.testng.Assert.assertTrue;
+
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -12,7 +14,12 @@ public class LoginTest extends BaseTest{
 	public void validLogin(String user, String pass) {
 		
 		app.click(app.menu.myAccountLink);
-		app.myAccount.loginInApp(user, pass);
+		app.myAccount.loginInApp(user, pass);		
+		assertTrue(app.elementIsDisplayed(app.myAccount.myAccountContent));
+		app.click(app.myAccount.logoutButton);
+		assertTrue(app.elementIsDisplayed(app.myAccount.usernameField));
+
+		
 	}
 	
 

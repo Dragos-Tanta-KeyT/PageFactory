@@ -21,6 +21,13 @@ public class MyAccountPage extends SeleniumWrappers{
 	@FindBy(css="button[name='login']")
 	public WebElement loginButton;
 	
+	@FindBy(xpath = "//div[@class='woocommerce-MyAccount-content']")
+	public WebElement myAccountContent;
+	
+	@FindBy(linkText = "Log out")
+	public WebElement logoutButton;
+	
+	
 	public void loginInApp(String user, String pass) {
 		sendKeys(usernameField, user);
 		sendKeys(passwordField, pass);
