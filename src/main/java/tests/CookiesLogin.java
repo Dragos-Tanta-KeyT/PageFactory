@@ -10,7 +10,9 @@ import org.testng.annotations.Test;
 
 import utils.BaseTest;
 
-public class LoginTest extends BaseTest{
+public class CookiesLogin extends BaseTest{
+	
+	Set<Cookie> cookies;
 	
 	@Parameters({"user", "pass"})
 	@Test
@@ -18,9 +20,22 @@ public class LoginTest extends BaseTest{
 		app.click(app.menu.myAccountLink);
 		app.myAccount.loginInApp(user, pass);		
 		assertTrue(app.elementIsDisplayed(app.myAccount.myAccountContent));
-		app.click(app.myAccount.logoutButton);
-		assertTrue(app.elementIsDisplayed(app.myAccount.usernameField));
+
+		cookies = driver.manage().getCookies();
+		
 	}
 	
-
+	@Test(priority=2)
+	public void cookiesLogin() throws InterruptedException {
+		
+		app.click(app.menu.myAccountLink);
+		for(Cookie cook : cookies) {
+			
+			driver.manage().addCookie(cook);
+		}
+		Thread.sleep(3000);
+		driver.navigate().refresh();
+		
+	}
+	
 }

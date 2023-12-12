@@ -4,11 +4,11 @@
 
     <test name="123" >
 
-		<parameter name="user" value="customer123" />
+		<parameter name="user" value="customer" />
 		<parameter name = "pass" value = "customer@123" />
 
         <classes>
-            <class name="tests.LoginTest" ></class>
+            <class name="tests.CookiesHandling" ></class>
         </classes>
     </test>
 

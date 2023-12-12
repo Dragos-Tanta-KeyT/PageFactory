@@ -9,6 +9,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -30,10 +31,10 @@ public class BaseTest {
 	public BasePage app;
 	
 	@Parameters({"url"})
-	@BeforeClass(alwaysRun = true)
+	@BeforeMethod(alwaysRun = true)
 	public void setup(String url) {
 		
-		driver = new ChromeDriver();
+		driver = new FirefoxDriver();
 		driver.manage().window().maximize();//maximizeaza fereastra de browser
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
@@ -42,7 +43,7 @@ public class BaseTest {
 		
 	}
 	
-	@AfterClass(alwaysRun = true)
+	@AfterMethod(alwaysRun = true)
 	public void tearDown() throws InterruptedException {
 		Thread.sleep(4000);
 		//driver.close();//inchide tabul curent
