@@ -31,10 +31,10 @@ public class BaseTest {
 	public BasePage app;
 	
 	@Parameters({"url"})
-	@BeforeMethod(alwaysRun = true)
+	@BeforeClass(alwaysRun = true)
 	public void setup(String url) {
 		
-		driver = new FirefoxDriver();
+		driver = new ChromeDriver();
 		driver.manage().window().maximize();//maximizeaza fereastra de browser
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
@@ -43,7 +43,7 @@ public class BaseTest {
 		
 	}
 	
-	@AfterMethod(alwaysRun = true)
+	@AfterClass(alwaysRun = true)
 	public void tearDown() throws InterruptedException {
 		Thread.sleep(4000);
 		//driver.close();//inchide tabul curent
@@ -62,11 +62,11 @@ public class BaseTest {
 			try {
 				String timestamp = new SimpleDateFormat("yyyy.mm.dd.hh.mm.ss").format(new Date());
 				Files.copy(picture, new File("poze/" + result.getName() + "-" + timestamp + ".png"));
-				System.out.println("Saved picture "+ result.getName() + "-" + timestamp + ".png");
+				Log.info("Saved picture "+ result.getName() + "-" + timestamp + ".png");
 				
 			}catch(Exception e) {
-				System.out.println("Could not save picture!");
-				System.out.println(e.getMessage());
+				Log.error("Could not save picture!");
+				Log.error(e.getMessage());
 			}
 			
 		}
