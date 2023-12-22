@@ -25,21 +25,22 @@ import com.google.common.io.Files;
 import pages.BasePage;
 import pages.MyAccountPage;
 
-public class BaseTest {
+public class BaseTest extends Driver {
 
-	public static WebDriver driver;
+	public WebDriver driver;
 	public BasePage app;
 	
-	@Parameters({"url"})
+	@Parameters({"url", "browser"})
 	@BeforeClass(alwaysRun = true)
-	public void setup(String url) {
+	public void setup(String url, String browser) {
 		
-		driver = new ChromeDriver();
+		//driver = new ChromeDriver();
+		driver = initBrowser(browser);
 		driver.manage().window().maximize();//maximizeaza fereastra de browser
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
 		driver.get(url);
-		app = new BasePage();
+		app = new BasePage(driver);
 		
 	}
 	

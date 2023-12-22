@@ -15,6 +15,10 @@ import org.testng.TestException;
 
 public class SeleniumWrappers extends BaseTest{
 
+	public SeleniumWrappers(WebDriver driver) {
+		this.driver = driver;
+	}
+	
 	/**
 	 * Custom click method, that waits for an element to be visible before 
 	 * triggering the click from Selenium
