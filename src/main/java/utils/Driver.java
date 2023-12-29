@@ -1,5 +1,7 @@
 package utils;
 
+import java.net.URL;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -8,6 +10,7 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class Driver {
 	
@@ -15,13 +18,17 @@ public class Driver {
 //	public WebDriver driver;
 	public static ThreadLocal<WebDriver> driver =  new ThreadLocal<WebDriver>();
 	
+	RemoteWebDriver rwd;
+	
 	public WebDriver initBrowser(String browser) {
 		
 		if(browser.equalsIgnoreCase("chrome")) {
 			try {
 				Log.info("Browser parameter is Chrome");
 				//driver = new ChromeDriver();
-				driver.set(new ChromeDriver(getChromeOptions()));
+				//driver.set(new ChromeDriver(getChromeOptions()));
+				rwd = new RemoteWebDriver(new URL("http://localhost:4444"), getChromeOptions());
+				driver.set(rwd);
 				return driver.get();
 			}catch(Exception e) {
 				Log.error("Could not setup Chrome");
@@ -56,8 +63,8 @@ public class Driver {
 	
 	public static ChromeOptions getChromeOptions() {
 		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--headless");
-		options.addArguments("--window-size=1580,1280");
+	//	options.addArguments("--headless");
+	//	options.addArguments("--window-size=1580,1280");
 		return options;
 	}
 

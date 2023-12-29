@@ -9,8 +9,8 @@
 		<listener class-name="utils.TestNgListener" />
 	</listeners>
 
-    <test name="Firefox test" >
-		<parameter name="browser" value="firefox" />
+    <test name="Chrome test" >
+		<parameter name="browser" value="chrome" />
         <classes>
             <class name="tests.LoginTest" ></class>
         </classes>
